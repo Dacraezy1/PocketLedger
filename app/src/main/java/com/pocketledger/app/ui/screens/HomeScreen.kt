@@ -30,6 +30,10 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.pocketledger.app.R
+
 @Composable
 fun HomeScreen(viewModel: LedgerViewModel) {
     val transactions by viewModel.transactions.collectAsState()
@@ -54,13 +58,25 @@ fun HomeScreen(viewModel: LedgerViewModel) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Header
-            Text(
-                text = "PocketLedger",
-                fontSize = 28.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colorScheme.onBackground
-            )
+            // Header with Logo
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.app_logo),
+                    contentDescription = "PocketLedger Logo",
+                    modifier = Modifier
+                        .height(40.dp)
+                        .clip(RoundedCornerShape(8.dp))
+                )
+                Text(
+                    text = "PocketLedger",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onBackground
+                )
+            }
 
             // Balance Summary Card
             SummaryCard(summary = summary)
