@@ -20,7 +20,7 @@ fun BottomNavBar(
     onScreenSelected: (Screen) -> Unit
 ) {
     NavigationBar {
-        Screen.values().forEach { screen ->
+        Screen.entries.forEach { screen ->
             NavigationBarItem(
                 selected = currentScreen == screen,
                 onClick = { onScreenSelected(screen) },

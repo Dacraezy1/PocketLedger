@@ -31,7 +31,7 @@ fun AnalyticsScreen(viewModel: LedgerViewModel) {
     val categoryTotals = remember(transactions) {
         val expenses = transactions.filter { it.type == TransactionType.EXPENSE }
         val totalExpenseAmount = expenses.sumOf { it.amount }
-        TransactionCategory.values().map { cat ->
+        TransactionCategory.entries.map { cat ->
             val catAmount = expenses.filter { it.category == cat }.sumOf { it.amount }
             val percentage = if (totalExpenseAmount > 0) (catAmount / totalExpenseAmount * 100).toFloat() else 0f
             Triple(cat, catAmount, percentage)
